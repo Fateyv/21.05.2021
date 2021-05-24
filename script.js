@@ -27,8 +27,9 @@ function getOperands(message) {
     do {
         arr = prompt(message);
     } while (isOperandsValid(arr));
-    arr = arr.split(",");
-    return arr.map(Number).filter(Number.isFinite).filter((operand) => operand % 2 !== 0);
+    return arr.split(",")
+                .map(Number)
+                .filter((operand) => isFinite(operand) && operand % 2);
 }
 
 function isOperandsValid(arr) {
@@ -42,16 +43,16 @@ function getCalculation(operator, operands) {
     let calcResult = 0;
         switch (operator) {
             case "+":
-                calcResult = operands.reduce((acc, num) => acc + num, 0);
+                calcResult = operands.reduce((acc, num) => acc + num);
                 break;
             case "-":
-                calcResult = operands.reduce((acc, num) => acc - num, 0);
+                calcResult = operands.reduce((acc, num) => acc - num);
                 break;
             case "*":
-                calcResult = operands.reduce((acc, num) => acc * num, 0);
+                calcResult = operands.reduce((acc, num) => acc * num);
                 break;
             case "/":
-                calcResult = operands.reduce((acc, num) => acc / num, 0);
+                calcResult = operands.reduce((acc, num) => acc / num);
                 break;
     }
     return calcResult;
